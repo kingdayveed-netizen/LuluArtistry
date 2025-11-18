@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Calendar, Clock, MapPin, User } from "lucide-react";
 
-const AppointmentPage = () => {
+const AppointmentPageContent = () => {
 	const searchParams = useSearchParams();
 	const router = useRouter();
 	const [formData, setFormData] = useState({
@@ -239,6 +239,14 @@ const AppointmentPage = () => {
 				</div>
 			</div>
 		</div>
+	);
+};
+
+const AppointmentPage = () => {
+	return (
+		<Suspense fallback={<div className="min-h-screen bg-white p-8">Loading booking details...</div>}>
+			<AppointmentPageContent />
+		</Suspense>
 	);
 };
 
