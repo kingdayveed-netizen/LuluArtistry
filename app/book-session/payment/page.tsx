@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, CreditCard, Calendar, Clock, MapPin, User } from "lucide-react";
 
-const PaymentPage = () => {
+const PaymentPageContent = () => {
 	const searchParams = useSearchParams();
 	const router = useRouter();
 	const [bookingData, setBookingData] = useState({
@@ -307,6 +307,14 @@ const PaymentPage = () => {
 				</div>
 			</div>
 		</div>
+	);
+};
+
+const PaymentPage = () => {
+	return (
+		<Suspense fallback={<div className="min-h-screen bg-white p-8">Loading payment options...</div>}>
+			<PaymentPageContent />
+		</Suspense>
 	);
 };
 

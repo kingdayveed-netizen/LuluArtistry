@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle, Calendar, Clock, MapPin, User, CreditCard, Download } from "lucide-react";
 
-const BookingSuccessPage = () => {
+const BookingSuccessPageContent = () => {
 	const searchParams = useSearchParams();
 	const [bookingData, setBookingData] = useState({
 		service: "",
@@ -165,6 +165,14 @@ Thank you for choosing Lulu's Academy!
 				</div>
 			</div>
 		</div>
+	);
+};
+
+const BookingSuccessPage = () => {
+	return (
+		<Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">Preparing your confirmation...</div>}>
+			<BookingSuccessPageContent />
+		</Suspense>
 	);
 };
 

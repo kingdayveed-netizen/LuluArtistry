@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import Image from "next/image";
 import { Heart, Star, ShoppingCart } from "lucide-react";
 import { products } from "@/utils/portfolioData";
@@ -11,7 +11,7 @@ interface ProductGridProps {
   title?: string;
 }
 
-const ProductGrid = ({ category, title }: ProductGridProps) => {
+const ProductGridContent = ({ category, title }: ProductGridProps) => {
   const [favorites, setFavorites] = useState<string[]>([]);
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("search")?.toLowerCase() || "";
@@ -192,6 +192,14 @@ const ProductGrid = ({ category, title }: ProductGridProps) => {
         )}
       </div>
     </div>
+  );
+};
+
+const ProductGrid = (props: ProductGridProps) => {
+  return (
+    <Suspense fallback={<div className="bg-[#fffaf5] text-gray-800 py-20 text-center">Loading products...</div>}>
+      <ProductGridContent {...props} />
+    </Suspense>
   );
 };
 
