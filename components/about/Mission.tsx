@@ -1,9 +1,9 @@
 const Mission = () => {
 	return (
-		<div className='flex flex-col items-center bg-gray-300 p-8 rounded-xl text-center gap-12 mt-10 px-6 md:px-20 mb-10 max-w-4xl mx-auto'>
+		<div className='flex flex-col gap-12 mt-10 px-6 md:px-20 mb-10 max-w-4xl mx-auto'>
 			{/* Mission Section */}
 			<div>
-				<h2 className='text-2xl md:text-3xl font-bold mb-4'>
+				<h2 className='text-2xl md:text-3xl font-bold mb-4 text-center'>
 					Our Mission
 				</h2>
 				<p className='text-gray-700 leading-relaxed'>
@@ -15,7 +15,7 @@ const Mission = () => {
 
 			{/* What We Offer */}
 			<div>
-				<h2 className='text-2xl md:text-3xl font-bold mb-4'>
+				<h2 className='text-2xl md:text-3xl font-bold mb-4 text-center'>
 					What We Offer
 				</h2>
 				<ul className='list-disc list-inside space-y-2 text-gray-700 leading-relaxed'>
@@ -40,7 +40,7 @@ const Mission = () => {
 
 			{/* Our Values */}
 			<div>
-				<h2 className='text-2xl md:text-3xl font-bold mb-4'>
+				<h2 className='text-2xl md:text-3xl font-bold mb-4 text-center'>
 					Our Values
 				</h2>
 				<ul className='list-disc list-inside space-y-2 text-gray-700 leading-relaxed'>

@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/layouts/Header";
 import Footer from "@/layouts/Footer";
 import Nav from "@/layouts/Nav";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 export const metadata: Metadata = {
 	title: "Lulu Artistry",
@@ -24,6 +25,7 @@ export default function RootLayout({
 				<Nav />
 				{children}
 				<Footer />
+				<WhatsAppButton />
 			</body>
 		</html>
 	);

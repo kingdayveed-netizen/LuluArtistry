@@ -1,73 +1,135 @@
+"use client";
+
+import { useState } from "react";
+
 const ContactBody = () => {
+	const [email, setEmail] = useState("");
+
+	const handleSubscribe = (e: React.FormEvent) => {
+		e.preventDefault();
+		// Handle newsletter subscription
+		console.log("Subscribed:", email);
+		setEmail("");
+	};
+
 	return (
-		<div className='max-w-4xl mx-auto px-6 py-12 space-y-12'>
-			{/* General Inquiries */}
-			<div>
-				<h3 className='text-xl md:text-2xl font-semibold mb-4 text-gray-900'>
-					General Inquiries & Support
-				</h3>
-				<p className='text-gray-700 mb-4'>
-					Have questions about our services, products, bookings, or
-					training sessions? We’re always happy to help!
-				</p>
-				<ul className='space-y-3 text-gray-700'>
-					<li>
-						<strong>WhatsApp:</strong>{" "}
-						<a
-							href='https://wa.me/09018022296'
-							className='text-primary-gold underline'
-						>
-							09018022296
-						</a>{" "}
-						– Get instant responses from our team.
-					</li>
-					<li>
-						<strong>Instagram DM:</strong>{" "}
-						<a
-							href='https://instagram.com/luluartistry.ng'
-							className='text-primary-gold underline'
-						>
-							@luluartistry.ng
-						</a>{" "}
-						– Slide into our DMs for inquiries, collaborations, or
-						feedback.
-					</li>
-					<li>
-						<strong>Email:</strong>{" "}
-						<a
-							href='mailto:luluartistry321@gmail.com'
-							className='text-primary-gold underline'
-						>
-							luluartistry321@gmail.com
-						</a>{" "}
-						– Order issues, training registration, or proposals.
-					</li>
-				</ul>
-			</div>
+		<div className='bg-white py-16'>
+			<div className='max-w-6xl mx-auto px-6 space-y-16'>
+				{/* General Inquiries & Support */}
+				<div>
+					<h2 className='text-2xl md:text-3xl font-bold mb-6 text-dark-gray text-center'>
+						General Inquiries & Support
+					</h2>
+					<p className='text-gray-700 mb-8 text-lg leading-relaxed'>
+						Have questions about our services, products, bookings, or training sessions? We're always happy to help!
+					</p>
+					<div className='space-y-6'>
+						<div className='flex flex-col md:flex-row md:items-start gap-4'>
+							<div className='flex-shrink-0'>
+								<span className='font-semibold text-dark-gray'>• WhatsApp:</span>
+							</div>
+							<div>
+								<a
+									href='https://wa.me/08088881234'
+									className='text-primary-gold font-semibold hover:underline'
+								>
+									08088881234
+								</a>
+								<p className='text-gray-600 mt-1'>
+									Get instant responses from our team, whether it's about booking, delivery, or products.
+								</p>
+							</div>
+						</div>
+						
+						<div className='flex flex-col md:flex-row md:items-start gap-4'>
+							<div className='flex-shrink-0'>
+								<span className='font-semibold text-dark-gray'>• Instagram DM:</span>
+							</div>
+							<div>
+								<a
+									href='https://instagram.com/luluartistry.ng'
+									className='text-primary-gold font-semibold hover:underline'
+								>
+									@luluartistry.ng
+								</a>
+								<p className='text-gray-600 mt-1'>
+									Slide into our DMs for inquiries, collaborations, or feedback.
+								</p>
+							</div>
+						</div>
+						
+						<div className='flex flex-col md:flex-row md:items-start gap-4'>
+							<div className='flex-shrink-0'>
+								<span className='font-semibold text-dark-gray'>• Email:</span>
+							</div>
+							<div>
+								<a
+									href='mailto:luluartistry7@gmail.com'
+									className='text-primary-gold font-semibold hover:underline'
+								>
+									luluartistry7@gmail.com
+								</a>
+								<p className='text-gray-600 mt-1'>
+									Reach us via email for order issues, training registrations, or business proposals.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
 
-			{/* Our Studio */}
-			<div>
-				<h3 className='text-xl md:text-2xl font-semibold mb-4 text-gray-900'>
-					Our Studio
-				</h3>
-				<ul className='list-disc pl-6 space-y-2 text-gray-700'>
-					<li>We’re proudly based in Calabar, Nigeria.</li>
-					<li>
-						All services and product orders are handled from our
-						studio.
-					</li>
-				</ul>
-			</div>
+				{/* Our Studio */}
+				<div>
+					<h2 className='text-2xl md:text-3xl font-bold mb-6 text-dark-gray text-center'>
+						Our Studio
+					</h2>
+					<div className='space-y-3 text-gray-700'>
+						<p>• We're proudly based in Calabar, Nigeria.</p>
+						<p>• All services and product orders are handled from our studio.</p>
+					</div>
+				</div>
 
-			{/* Business Hours */}
-			<div>
-				<h3 className='text-xl md:text-2xl font-semibold mb-4 text-gray-900'>
-					Business Hours
-				</h3>
-				<ul className='list-disc pl-6 space-y-2 text-gray-700'>
-					<li>Monday – Saturday: 9 AM – 6 PM</li>
-					<li>Sunday: Closed (except special sessions)</li>
-				</ul>
+				{/* Business Hours */}
+				<div>
+					<h2 className='text-2xl md:text-3xl font-bold mb-6 text-dark-gray text-center'>
+						Business Hours
+					</h2>
+					<div className='space-y-3 text-gray-700'>
+						<p>• Monday - Saturday: 9 AM - 6 PM</p>
+						<p>• Sunday: Closed (except special sessions)</p>
+					</div>
+				</div>
+
+				{/* Newsletter Signup */}
+				<div className='text-center'>
+					<h2 className='text-2xl md:text-3xl font-bold mb-6 text-dark-gray text-center'>
+						Grow in Your Inbox
+					</h2>
+					<p className='text-gray-700 mb-8 text-lg leading-relaxed'>
+						Be the first to hear about new arrivals, exclusive deals, and beauty tips made just for you.
+					</p>
+					<form onSubmit={handleSubscribe} className='max-w-md mx-auto'>
+						<div className='flex flex-col sm:flex-row gap-4'>
+							<input
+								type='email'
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								placeholder='Your Email address'
+								className='flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-transparent'
+								required
+							/>
+							<button
+								type='submit'
+								className='bg-primary-gold hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg transition-colors whitespace-nowrap'
+							>
+								Subscribe & Stay Beautiful!
+							</button>
+						</div>
+						<p className='text-sm text-gray-500 mt-3'>
+							By subscribing you agree to continually receive emails and text message updates from Lulu Artistry.
+						</p>
+					</form>
+				</div>
+
 			</div>
 		</div>
 	);

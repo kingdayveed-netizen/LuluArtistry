@@ -1,5 +1,6 @@
 import { brows, lash, nails, tatoo } from "@/assets";
 import Image from "next/image";
+import Link from "next/link";
 
 const Curated = () => {
 	const items = [
@@ -7,21 +8,25 @@ const Curated = () => {
 			title: "Lashes",
 			image: lash,
 			desc: "Elevate your eyes with natural to dramatic lash styles.",
+			link: "/shop/lashes",
 		},
 		{
-			title: "Nails",
+			title: "Spa",
 			image: nails,
-			desc: "Press-on perfection — for glam that’s quick and flawless.",
+			desc: "Press-on perfection — for glam that's quick and flawless.",
+			link: "/shop/spa",
 		},
 		{
 			title: "Tattoos",
 			image: tatoo,
 			desc: "Long-lasting, stylish body art to express your unique identity.",
+			link: "/shop/tattoo",
 		},
 		{
 			title: "Brows",
 			image: brows,
 			desc: "Shape, define, and perfect your brows with expert tools.",
+			link: "/shop/brows",
 		},
 	];
 
@@ -53,9 +58,12 @@ const Curated = () => {
 						/>
 						<h2 className='font-semibold text-lg'>{item.title}</h2>
 						<p className='text-sm sm:text-base'>{item.desc}</p>
-						<p className='text-sm font-medium text-primary-gold cursor-pointer hover:underline'>
+						<Link 
+							href={item.link}
+							className='text-sm font-medium text-primary-gold cursor-pointer hover:underline'
+						>
 							Shop {item.title}
-						</p>
+						</Link>
 					</div>
 				))}
 			</div>
