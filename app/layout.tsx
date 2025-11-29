@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/layouts/Header";
-import Footer from "@/layouts/Footer";
-import Nav from "@/layouts/Nav";
-import WhatsAppButton from "@/components/common/WhatsAppButton";
+import { Toaster } from "react-hot-toast";
+import AdminLayoutWrapper from "@/components/admin/AdminLayoutWrapper";
 
 export const metadata: Metadata = {
 	title: "Lulu Artistry",
@@ -21,11 +19,33 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={`antialiased`}>
-				<Header />
-				<Nav />
-				{children}
-				<Footer />
-				<WhatsAppButton />
+				<AdminLayoutWrapper>
+					{children}
+				</AdminLayoutWrapper>
+				<Toaster 
+					position="top-right"
+					toastOptions={{
+						duration: 3000,
+						style: {
+							background: '#363636',
+							color: '#fff',
+						},
+						success: {
+							duration: 3000,
+							iconTheme: {
+								primary: '#10b981',
+								secondary: '#fff',
+							},
+						},
+						error: {
+							duration: 3000,
+							iconTheme: {
+								primary: '#ef4444',
+								secondary: '#fff',
+							},
+						},
+					}}
+				/>
 			</body>
 		</html>
 	);

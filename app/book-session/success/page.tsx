@@ -3,7 +3,7 @@
 import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle, Calendar, Clock, MapPin, User, CreditCard, Download } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
 const BookingSuccessPageContent = () => {
 	const searchParams = useSearchParams();
@@ -15,10 +15,10 @@ const BookingSuccessPageContent = () => {
 		location: "",
 		price: "",
 		paymentMethod: "",
-		firstName: "",
-		lastName: "",
+		fullName: "",
 		email: "",
-		phone: ""
+		phone: "",
+		preferredContact: ""
 	});
 
 	useEffect(() => {
@@ -29,139 +29,71 @@ const BookingSuccessPageContent = () => {
 		const location = searchParams.get("location");
 		const price = searchParams.get("price");
 		const paymentMethod = searchParams.get("paymentMethod");
-		const firstName = searchParams.get("firstName");
-		const lastName = searchParams.get("lastName");
+		const fullName = searchParams.get("fullName");
 		const email = searchParams.get("email");
 		const phone = searchParams.get("phone");
+		const preferredContact = searchParams.get("preferredContact");
 
-		if (service && artist && date && time && location && price && paymentMethod && firstName && lastName && email && phone) {
+		if (service && artist && date && time && location && price && paymentMethod && fullName && email && phone) {
 			setBookingData({
-				service: service,
-				artist: artist,
-				date: date,
-				time: time,
-				location: location,
-				price: price,
-				paymentMethod: paymentMethod,
-				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				phone: phone
+				service: service || "",
+				artist: artist || "",
+				date: date || "",
+				time: time || "",
+				location: location || "",
+				price: price || "",
+				paymentMethod: paymentMethod || "",
+				fullName: fullName || "",
+				email: email || "",
+				phone: phone || "",
+				preferredContact: preferredContact || ""
 			});
 		}
 	}, [searchParams]);
 
-	const handleDownloadBooking = () => {
-		// Create a simple booking confirmation text
-		const bookingText = `
-BOOKING CONFIRMATION - LULU'S ACADEMY
-
-Customer: ${bookingData.firstName} ${bookingData.lastName}
-Email: ${bookingData.email}
-Phone: ${bookingData.phone}
-
-Service: ${bookingData.service}
-Artist: ${bookingData.artist}
-Date: ${new Date(bookingData.date).toLocaleDateString('en-US', { 
-	weekday: 'long', 
-	month: 'long', 
-	day: 'numeric', 
-	year: 'numeric' 
-})}
-Time: ${bookingData.time}
-Location: ${bookingData.location}
-
-Payment Method: ${bookingData.paymentMethod}
-Total: $${bookingData.price}
-
-Thank you for choosing Lulu's Academy!
-		`;
-
-		// Create and download the file
-		const blob = new Blob([bookingText], { type: 'text/plain' });
-		const url = window.URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = `booking-confirmation-${bookingData.firstName}-${bookingData.lastName}.txt`;
-		document.body.appendChild(a);
-		a.click();
-		document.body.removeChild(a);
-		window.URL.revokeObjectURL(url);
-	};
-
 	return (
-		<div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-			{/* Success Modal */}
-			<div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8">
+		<div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+			<div className="max-w-2xl w-full">
 				{/* Success Icon */}
 				<div className="text-center mb-8">
-					<div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-						<CheckCircle className="text-green-500" size={48} />
+					<div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+						<CheckCircle className="text-white" size={64} />
 					</div>
-					<h1 className="text-3xl font-bold text-dark-gray mb-2">
+					<h1 className="text-4xl md:text-5xl font-bold text-dark-gray mb-3">
 						Booking Confirmed!
 					</h1>
-					<p className="text-lg text-gray-600">
-						Your booking has been confirmed. We look forward to seeing you!
+					<p className="text-xl text-gray-600">
+						Your appointment has been successfully booked.
 					</p>
 				</div>
 
-				{/* Booking Details */}
-				<div className="bg-gray-50 rounded-lg p-6 mb-8">
-					<h2 className="text-xl font-bold text-dark-gray mb-4">Booking Details</h2>
-					<div className="space-y-3 text-sm">
-						<div className="flex justify-between">
-							<span className="text-gray-600">Service:</span>
-							<span className="font-medium">{bookingData.service}</span>
+				{/* What's Next Section */}
+				<div className="bg-yellow-50 rounded-xl p-8 mb-8">
+					<h2 className="text-2xl font-bold text-dark-gray mb-6">What&apos;s Next!</h2>
+					<div className="space-y-4">
+						<div>
+							<p className="font-semibold text-dark-gray mb-1">Email Confirmation:</p>
+							<p className="text-gray-600">Check your email for booking details.</p>
 						</div>
-						<div className="flex justify-between">
-							<span className="text-gray-600">Date & Time:</span>
-							<span className="font-medium">
-								{new Date(bookingData.date).toLocaleDateString('en-US', { 
-									weekday: 'short', 
-									month: 'short', 
-									day: 'numeric', 
-									year: 'numeric' 
-								})}, {bookingData.time}
-							</span>
+						<div>
+							<p className="font-semibold text-dark-gray mb-1">SMS Reminder:</p>
+							<p className="text-gray-600">Get a reminder.</p>
 						</div>
-						<div className="flex justify-between">
-							<span className="text-gray-600">Location:</span>
-							<span className="font-medium">{bookingData.location}</span>
-						</div>
-						<div className="flex justify-between">
-							<span className="text-gray-600">Artist:</span>
-							<span className="font-medium">{bookingData.artist}</span>
-						</div>
-						<div className="flex justify-between">
-							<span className="text-gray-600">Price:</span>
-							<span className="font-medium">${bookingData.price}</span>
+						<div>
+							<p className="font-semibold text-dark-gray mb-1">Contact Us:</p>
+							<p className="text-gray-600">Reach us if you need to reschedule.</p>
 						</div>
 					</div>
 				</div>
 
-				{/* Action Buttons */}
-				<div className="flex flex-col sm:flex-row gap-4">
-					<button
-						onClick={handleDownloadBooking}
-						className="flex-1 bg-primary-gold hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
-					>
-						<Download size={18} />
-						Download Booking
-					</button>
+				{/* Book Another Appointment Button */}
+				<div className="text-center">
 					<Link
 						href="/book-session"
-						className="flex-1 border-2 border-primary-gold text-primary-gold hover:bg-primary-gold hover:text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 text-center"
+						className="inline-block bg-primary-gold hover:bg-yellow-500 text-black font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
 					>
-						Book Another Session
+						Book Another Appointment
 					</Link>
-				</div>
-
-				{/* Additional Info */}
-				<div className="mt-8 p-4 bg-blue-50 rounded-lg">
-					<p className="text-sm text-blue-800 text-center">
-						📧 A confirmation email has been sent to {bookingData.email} with all the details.
-					</p>
 				</div>
 			</div>
 		</div>
@@ -170,7 +102,7 @@ Thank you for choosing Lulu's Academy!
 
 const BookingSuccessPage = () => {
 	return (
-		<Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">Preparing your confirmation...</div>}>
+		<Suspense fallback={<div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">Preparing your confirmation...</div>}>
 			<BookingSuccessPageContent />
 		</Suspense>
 	);

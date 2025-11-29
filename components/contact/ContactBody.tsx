@@ -30,10 +30,10 @@ const ContactBody = () => {
 							</div>
 							<div>
 								<a
-									href='https://wa.me/08088881234'
+									href='https://wa.me/+234 703 100 2094'
 									className='text-primary-gold font-semibold hover:underline'
 								>
-									08088881234
+									+234 703 100 2094
 								</a>
 								<p className='text-gray-600 mt-1'>
 									Get instant responses from our team, whether it's about booking, delivery, or products.
@@ -47,10 +47,10 @@ const ContactBody = () => {
 							</div>
 							<div>
 								<a
-									href='https://instagram.com/luluartistry.ng'
+									href='https://instagram.com/lulusartistry.ng'
 									className='text-primary-gold font-semibold hover:underline'
 								>
-									@luluartistry.ng
+									@lulusartistry.ng
 								</a>
 								<p className='text-gray-600 mt-1'>
 									Slide into our DMs for inquiries, collaborations, or feedback.
@@ -64,10 +64,10 @@ const ContactBody = () => {
 							</div>
 							<div>
 								<a
-									href='mailto:luluartistry7@gmail.com'
+									href='mailto:lulusartistry7@gmail.com'
 									className='text-primary-gold font-semibold hover:underline'
 								>
-									luluartistry7@gmail.com
+									lulusartistry7@gmail.com
 								</a>
 								<p className='text-gray-600 mt-1'>
 									Reach us via email for order issues, training registrations, or business proposals.
@@ -85,6 +85,17 @@ const ContactBody = () => {
 					<div className='space-y-3 text-gray-700'>
 						<p>• We're proudly based in Calabar, Nigeria.</p>
 						<p>• All services and product orders are handled from our studio.</p>
+						<p>
+							• Find us at{" "}
+							<a
+								href='https://maps.app.goo.gl/yDa5c32xqGrvUms26?g_st=ac'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='text-primary-gold font-semibold hover:underline'
+							>
+								Unogwu Plaza, Marian Road (Lat: 4.9750875, Lon: 8.3406566)
+							</a>
+						</p>
 					</div>
 				</div>
 
@@ -102,7 +113,7 @@ const ContactBody = () => {
 				{/* Newsletter Signup */}
 				<div className='text-center'>
 					<h2 className='text-2xl md:text-3xl font-bold mb-6 text-dark-gray text-center'>
-						Grow in Your Inbox
+						Glow in Your Inbox
 					</h2>
 					<p className='text-gray-700 mb-8 text-lg leading-relaxed'>
 						Be the first to hear about new arrivals, exclusive deals, and beauty tips made just for you.

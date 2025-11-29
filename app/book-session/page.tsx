@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { MapPin, Phone, Mail, Clock, Star, GraduationCap, Calendar, Check } from "lucide-react";
 import { lulu, lash, brows, nails, tatoo } from "@/assets";
 import OmbrePowder from "@/assets/images/booking/OmbrePowderBrow.png";
@@ -32,7 +33,17 @@ import lamination from "@/assets/images/booking/PrivateBrowLamination.png";
 
 
 const BookSessionPage = () => {
+	const router = useRouter();
 	const [activeFilter, setActiveFilter] = useState("all");
+	const [formData, setFormData] = useState({
+		name: "",
+		email: "",
+		phone: "",
+		service: "",
+		date: "",
+		time: "",
+		notes: ""
+	});
 
 	const services = [
 		{
@@ -374,11 +385,24 @@ const BookSessionPage = () => {
 						{/* Appointment Form */}
 						<div className="lg:col-span-2 bg-white rounded-xl shadow-lg p-8">
 							<h3 className="text-2xl font-bold text-gray-800 mb-6">Appointment Details</h3>
-							<form className="space-y-6">
+							<form 
+								onSubmit={(e) => {
+									e.preventDefault();
+									if (formData.service) {
+										router.push(`/book-session/appointment?service=${encodeURIComponent(formData.service)}`);
+									} else {
+										// Scroll to top if no service selected
+										window.scrollTo({ top: 0, behavior: 'smooth' });
+									}
+								}}
+								className="space-y-6"
+							>
 								<div>
 									<label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
 									<input
 										type="text"
+										value={formData.name}
+										onChange={(e) => setFormData({ ...formData, name: e.target.value })}
 										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										placeholder="Enter your full name"
 									/>
@@ -387,6 +411,8 @@ const BookSessionPage = () => {
 									<label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
 									<input
 										type="email"
+										value={formData.email}
+										onChange={(e) => setFormData({ ...formData, email: e.target.value })}
 										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										placeholder="Enter your email"
 									/>
@@ -395,14 +421,20 @@ const BookSessionPage = () => {
 									<label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
 									<input
 										type="tel"
+										value={formData.phone}
+										onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
 										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										placeholder="Enter your phone number"
 									/>
 								</div>
 								<div>
 									<label className="block text-sm font-medium text-gray-700 mb-2">Service</label>
-									<select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
-										<option>Select Service</option>
+									<select 
+										value={formData.service}
+										onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+									>
+										<option value="">Select Service</option>
 										{services.map((service) => (
 											<option key={service.id} value={service.id}>
 												{service.name}
@@ -415,6 +447,8 @@ const BookSessionPage = () => {
 										<label className="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
 										<input
 											type="date"
+											value={formData.date}
+											onChange={(e) => setFormData({ ...formData, date: e.target.value })}
 											className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										/>
 									</div>
@@ -422,6 +456,8 @@ const BookSessionPage = () => {
 										<label className="block text-sm font-medium text-gray-700 mb-2">Preferred Time</label>
 										<input
 											type="time"
+											value={formData.time}
+											onChange={(e) => setFormData({ ...formData, time: e.target.value })}
 											className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										/>
 									</div>
@@ -430,6 +466,8 @@ const BookSessionPage = () => {
 									<label className="block text-sm font-medium text-gray-700 mb-2">Other Notes</label>
 									<textarea
 										rows={4}
+										value={formData.notes}
+										onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
 										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										placeholder="Any additional notes or special requests..."
 									/>

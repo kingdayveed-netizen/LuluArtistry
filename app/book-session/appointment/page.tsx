@@ -3,8 +3,10 @@
 import { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { lulu } from "@/assets";
 import Image from "next/image";
 import { ArrowLeft, Calendar, Clock, MapPin, User } from "lucide-react";
+import toast from "react-hot-toast";
 
 const AppointmentPageContent = () => {
 	const searchParams = useSearchParams();
@@ -23,13 +25,13 @@ const AppointmentPageContent = () => {
 		const service = searchParams.get("service");
 		const type = searchParams.get("type");
 		
-		if (service && type) {
-			setFormData(prev => ({ ...prev, service: service }));
+		if (service) {
+			setFormData(prev => ({ ...prev, service: decodeURIComponent(service) }));
 		}
 	}, [searchParams]);
 
 	const artists = [
-		{ id: "lulu", name: "Lulu (Founder)" },
+		{ id: "lulu", name: "Lulu" },
 		{ id: "sarah", name: "Sarah Johnson" },
 		{ id: "maya", name: "Maya Williams" }
 	];
@@ -57,7 +59,7 @@ const AppointmentPageContent = () => {
 	const handleNext = () => {
 		// Validate form
 		if (!formData.artist || !formData.date || !formData.time || !formData.location) {
-			alert("Please fill in all required fields");
+			toast.error("Please fill in all required fields");
 			return;
 		}
 
@@ -225,7 +227,7 @@ const AppointmentPageContent = () => {
 							</h3>
 							<div className="relative h-48 w-full overflow-hidden rounded-lg mb-4">
 								<Image
-									src="/api/placeholder/300/200"
+									src={lulu}	
 									alt="About Lulu"
 									fill
 									className="object-cover"

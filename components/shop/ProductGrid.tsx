@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Heart, Star, ShoppingCart } from "lucide-react";
 import { products } from "@/utils/portfolioData";
 import { useSearchParams } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface ProductGridProps {
   category?: string;
@@ -77,7 +78,7 @@ const ProductGridContent = ({ category, title }: ProductGridProps) => {
     }
     
     localStorage.setItem("cart", JSON.stringify(cartItems));
-    alert(`${product.name} added to cart!`);
+    toast.success(`${product.name} added to cart!`);
   };
 
   const renderStars = (rating: number) => {

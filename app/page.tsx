@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Star, Heart, ShoppingCart } from "lucide-react";
+import toast from "react-hot-toast";
 import Curated from "@/components/home/Curated";
 import Features from "@/components/home/Features";
 import FounderCard from "@/components/home/FounderCard";
@@ -41,17 +42,42 @@ const page = () => {
     { id: 8, name: "Lash Wash Brush", price: 2000, image: lashwash, rating: 4.9 },
   ];
 
+  
   const toggleFavorite = (productId: number) => {
     const idStr = productId.toString();
-    setFavorites(prev => 
-      prev.includes(idStr) 
+    setFavorites(prev => {
+      const updated = prev.includes(idStr) 
         ? prev.filter(id => id !== idStr)
-        : [...prev, idStr]
-    );
+        : [...prev, idStr];
+      localStorage.setItem("wishlist", JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const addToCart = (productId: number) => {
-    console.log('Added to cart:', productId);
+    const product = newArrivals.find(p => p.id === productId);
+    if (!product) return;
+
+    const savedCart = localStorage.getItem("cart");
+    const cartItems = savedCart ? JSON.parse(savedCart) : [];
+    
+    const existingItem = cartItems.find((item: any) => item.id === productId.toString());
+    if (existingItem) {
+      existingItem.quantity = (existingItem.quantity || 1) + 1;
+    } else {
+      // Convert product to match cart format
+      cartItems.push({ 
+        id: productId.toString(),
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
+        inStock: true
+      });
+    }
+    
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+    toast.success(`${product.name} added to cart!`);
   };
 
   const formatPrice = (price: number) => {
@@ -99,7 +125,7 @@ const page = () => {
                   onClick={() => toggleFavorite(product.id)}
                   className={`absolute top-2 right-2 rounded-full p-2 transition-colors ${
                     favorites.includes(product.id.toString())
-                      ? 'bg-red-500 text-white'
+                      ? 'bg-yellow-500 text-white'
                       : 'bg-white/80 text-gray-600 hover:bg-white'
                   }`}
                 >
@@ -154,7 +180,7 @@ const page = () => {
           src={img}
           alt="Instagram Post"
           width={300}
-          height={300}
+          height={450}
           className="rounded-xl object-cover w-full h-[250px]"
         />
       ))}

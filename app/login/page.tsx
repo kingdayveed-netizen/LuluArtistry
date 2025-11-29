@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
 	const [isLogin, setIsLogin] = useState(true);
@@ -20,7 +21,7 @@ export default function LoginPage() {
 			console.log("Login:", formData.email, formData.password);
 		} else {
 			if (formData.password !== formData.confirmPassword) {
-				alert("Passwords do not match");
+				toast.error("Passwords do not match");
 				return;
 			}
 			console.log("Register:", formData);

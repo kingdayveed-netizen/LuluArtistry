@@ -1,19 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { headerLinks, NavItem } from "@/utils/data";
+import { headerLinks, NavItem as NavItemType } from "@/utils/data";
 import Link from "next/link";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
-const Nav = () => {
-	const [open, setOpen] = useState(false);
+interface NavProps {
+	isMobileOpen?: boolean;
+	onCloseMobile?: () => void;
+}
+
+const Nav = ({ isMobileOpen = false, onCloseMobile }: NavProps) => {
 	const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
 	const handleDropdownToggle = (title: string) => {
 		setActiveDropdown(activeDropdown === title ? null : title);
 	};
 
-	const NavItem = ({ item }: { item: NavItem }) => {
+	const NavItem = ({ item }: { item: NavItemType }) => {
 		if (item.dropdown) {
 			return (
 				<div className="relative group">
@@ -57,8 +61,13 @@ const Nav = () => {
 		);
 	};
 
+	const closeMobileMenu = () => {
+		onCloseMobile?.();
+		setActiveDropdown(null);
+	};
+
 	return (
-		<nav className='relative mt-5 mb-5'>
+		<nav className='relative px-4 md:px-0 py-3 border-b border-gray-200 bg-[#fffaf5]'>
 			{/* Desktop Nav */}
 			<div className='hidden md:flex justify-center items-center gap-10'>
 				{headerLinks.map((item, i) => (
@@ -66,16 +75,9 @@ const Nav = () => {
 				))}
 			</div>
 
-			{/* Mobile Nav Toggle */}
-			<div className='md:hidden flex items-center justify-end'>
-				<button onClick={() => setOpen(!open)} className='p-2'>
-					{open ? <X size={24} /> : <Menu size={24} />}
-				</button>
-			</div>
-
 			{/* Mobile Nav Menu */}
-			{open && (
-				<div className='absolute top-12 left-0 w-full bg-white shadow-md flex flex-col gap-6 p-6 md:hidden z-50'>
+			{isMobileOpen && (
+				<div className='md:hidden absolute left-0 right-0 top-full bg-white shadow-lg flex flex-col gap-6 p-6 border-b border-gray-200 z-40'>
 					{headerLinks.map((item, i) => (
 						<div key={i}>
 							{item.dropdown ? (
@@ -97,7 +99,7 @@ const Nav = () => {
 													key={index}
 													href={dropdownItem.link}
 													className="block text-sm text-gray-600 hover:text-primary-gold transition-colors"
-													onClick={() => setOpen(false)}
+													onClick={closeMobileMenu}
 												>
 													{dropdownItem.title}
 												</Link>
@@ -109,7 +111,7 @@ const Nav = () => {
 								<Link
 									href={item.link!}
 									className='text-gray-700 hover:text-primary-gold font-semibold'
-									onClick={() => setOpen(false)}
+									onClick={closeMobileMenu}
 								>
 									{item.title}
 								</Link>

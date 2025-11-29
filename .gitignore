@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# documentation markdown files (keep README.md)
+ADMIN_*.md
+BACKEND_*.md

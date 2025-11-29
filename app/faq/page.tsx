@@ -19,27 +19,33 @@ export default function FAQPage() {
 					<h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">General Information</h2>
 					<div className="space-y-6">
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">How do I place an order?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">Where are you located?</h3>
 							<p className="text-gray-600">
-								You can place an order directly through our website by adding products to your cart and proceeding to checkout. Follow the simple steps to complete your purchase.
+							 We are based in Calabar, Nigeria. All orders are shipped from our studio
 							</p>
 						</div>
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">How can I track my order?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">Do you ship nationwide?</h3>
 							<p className="text-gray-600">
-								Once your order is shipped, you will receive a tracking number via email. You can use this number to track your order status on our website or the shipping carrier's website.
+							  Yes, we deliver to all states in Nigeria. 
 							</p>
 						</div>
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">What are your delivery times?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">How long does delivery take?</h3>
 							<p className="text-gray-600">
-								Standard delivery times are 3-5 business days for local orders and 7-14 business days for international orders. Express shipping options are available at checkout.
+							  2–4 business days after processing, depending on your location.
 							</p>
 						</div>
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">Can I cancel my order?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">Do you offer same-day delivery?</h3>
 							<p className="text-gray-600">
-								Orders can be cancelled within 24 hours of placement, provided they haven't been shipped. Please contact our customer service team immediately if you need to cancel.
+							   Yes, within Calabar for orders placed before 12 PM.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">Can I pick up my order?</h3>
+							<p className="text-gray-600">
+							   Yes, choose “Pickup” at checkout and we’ll notify you when it’s ready.
 							</p>
 						</div>
 					</div>
@@ -52,13 +58,13 @@ export default function FAQPage() {
 						<div>
 							<h3 className="text-lg font-semibold mb-2 text-gray-700">What payment methods do you accept?</h3>
 							<p className="text-gray-600">
-								We accept all major credit cards, debit cards, bank transfers, and mobile payment options. All transactions are secure and encrypted.
+							   Bank transfers, debit/credit cards, and Paystack.
 							</p>
 						</div>
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">I'm having payment issues. What should I do?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">Do you offer payment on delivery?</h3>
 							<p className="text-gray-600">
-								If you encounter any payment issues, please contact our support team at info@lulustore.com or call us at +234 90000000. We'll help resolve the issue promptly.
+							   No, all orders must be prepaid to confirm processing.
 							</p>
 						</div>
 					</div>
@@ -69,21 +75,36 @@ export default function FAQPage() {
 					<h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Product Information</h2>
 					<div className="space-y-6">
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">What's the difference between your products?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">What’s the difference between Easy Fan and Classic lashes?</h3>
 							<p className="text-gray-600">
-								Our products vary by category (lashes, brows, spa, tattoos) and are designed for different needs. Each product page includes detailed descriptions, specifications, and usage instructions.
+							 Easy Fans (0.07) bloom into fans for volume sets; Classic (0.15) are for single-strand natural looks.
 							</p>
 						</div>
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">Do you have different sizes available?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">What lash curls do you have?</h3>
 							<p className="text-gray-600">
-								Yes, many of our products come in various sizes. Size options are listed on each product page. If you need assistance choosing the right size, contact our team.
+							  Easy Fans: J, B, L, C, Cc, D, Dd, M <br />
+							  Classic: C, Cc, D
 							</p>
 						</div>
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">How do I care for my products?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">What lash lengths are available?</h3>
 							<p className="text-gray-600">
-								Care instructions are provided with each product. Generally, we recommend storing products in a cool, dry place and following the specific care guidelines included in your order.
+							Single trays: 8mm–25mm <br />
+							Mixed trays: 8–14mm, 14–20mm, 20–25mm <br />
+							Bottom lashes: 5–10mm
+							</p>
+						</div>
+						<div>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">How long does your lash glue last?</h3>
+							<p className="text-gray-600">
+							  4–6 weeks retention. Available in 5ml and 10ml.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">Are your products safe?</h3>
+							<p className="text-gray-600">
+							   Yes, all products are tested and safe for professional use.
 							</p>
 						</div>
 					</div>
@@ -94,9 +115,9 @@ export default function FAQPage() {
 					<h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Training</h2>
 					<div className="space-y-6">
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">Do you offer training courses?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">Do you offer lash or brow training?</h3>
 							<p className="text-gray-600">
-								Yes, we offer comprehensive training courses for various beauty services including lash extensions, brow treatments, and more. Visit our Training page to learn more and book a session.
+							 Yes! We offer both online and in-person classes.
 							</p>
 						</div>
 						<div>
@@ -113,21 +134,15 @@ export default function FAQPage() {
 					<h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Returns & Support</h2>
 					<div className="space-y-6">
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">What is your return policy?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">Can I return or exchange a product?</h3>
 							<p className="text-gray-600">
-								We accept returns within 14 days of delivery for unused, unopened products in their original packaging. Please see our Return & Refund Policy page for full details.
+							All sales are final. If you receive a damaged or wrong item, contact us within 24 hours.
 							</p>
 						</div>
 						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">How do I request a refund?</h3>
+							<h3 className="text-lg font-semibold mb-2 text-gray-700">What if my order is missing an item?</h3>
 							<p className="text-gray-600">
-								To request a refund, please contact us at info@lulustore.com with your order number and reason for return. Our team will process your request within 5-7 business days.
-							</p>
-						</div>
-						<div>
-							<h3 className="text-lg font-semibold mb-2 text-gray-700">My order is missing items. What should I do?</h3>
-							<p className="text-gray-600">
-								If your order is missing items, please contact our support team immediately at info@lulustore.com or +234 90000000. We'll investigate and resolve the issue as quickly as possible.
+							   Message us via WhatsApp or email within 24 hours and we’ll resolve it quickly.
 							</p>
 						</div>
 					</div>
@@ -140,14 +155,14 @@ export default function FAQPage() {
 						If you couldn't find the answer you're looking for, feel free to reach out to us. We're here to help!
 					</p>
 					<p className="text-gray-700">
-						Email us at: <a href="mailto:info@lulustore.com" className="text-primary-gold hover:underline">info@lulustore.com</a>
+						Email us at: <a href="mailto:hello@luluartistry.com" className="text-primary-gold hover:underline"> hello@luluartistry.com</a>
 					</p>
 				</section>
 
 				{/* Newsletter */}
 				<section className="mb-12 bg-[#fff9ef] p-8 rounded-lg">
 					<h2 className="text-2xl md:text-3xl font-bold mb-4 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
-						Glam In Your Inbox
+						Glow In Your Inbox
 					</h2>
 					<p className="text-gray-600 text-center mb-6">
 						Be the first to hear about new arrivals, exclusive deals, and beauty tips made just for you.

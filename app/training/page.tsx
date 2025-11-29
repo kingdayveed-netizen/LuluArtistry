@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Star, GraduationCap, Calendar, Check, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { lulu, lash, brows, nails, tatoo } from "@/assets";
 import OmbrePowder from "@/assets/images/booking/OmbrePowderBrow.png";
@@ -30,7 +31,17 @@ import lamination from "@/assets/images/booking/PrivateBrowLamination.png";
 
 
 const TrainingPage = () => {
+	const router = useRouter();
 	const [activeFilter, setActiveFilter] = useState("all");
+	const [formData, setFormData] = useState({
+		name: "",
+		email: "",
+		phone: "",
+		course: "",
+		date: "",
+		time: "",
+		notes: ""
+	});
 
 	const trainingCourses = [
 		{
@@ -380,11 +391,24 @@ const TrainingPage = () => {
 						{/* Training Form */}
 						<div className="lg:col-span-2 bg-white rounded-xl shadow-lg p-8">
 							<h3 className="text-2xl font-bold text-gray-800 mb-6">Training Details</h3>
-							<form className="space-y-6">
+							<form 
+								onSubmit={(e) => {
+									e.preventDefault();
+									if (formData.course) {
+										router.push(`/book-session/appointment?service=${encodeURIComponent(formData.course)}&type=training`);
+									} else {
+										// Scroll to top if no course selected
+										window.scrollTo({ top: 0, behavior: 'smooth' });
+									}
+								}}
+								className="space-y-6"
+							>
 								<div>
 									<label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
 									<input
 										type="text"
+										value={formData.name}
+										onChange={(e) => setFormData({ ...formData, name: e.target.value })}
 										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										placeholder="Enter your full name"
 									/>
@@ -393,6 +417,8 @@ const TrainingPage = () => {
 									<label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
 									<input
 										type="email"
+										value={formData.email}
+										onChange={(e) => setFormData({ ...formData, email: e.target.value })}
 										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										placeholder="Enter your email"
 									/>
@@ -401,14 +427,20 @@ const TrainingPage = () => {
 									<label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
 									<input
 										type="tel"
+										value={formData.phone}
+										onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
 										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										placeholder="Enter your phone number"
 									/>
 								</div>
 								<div>
 									<label className="block text-sm font-medium text-gray-700 mb-2">Training Course</label>
-									<select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
-										<option>Select Training Course</option>
+									<select 
+										value={formData.course}
+										onChange={(e) => setFormData({ ...formData, course: e.target.value })}
+										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+									>
+										<option value="">Select Training Course</option>
 										{trainingCourses.map((course) => (
 											<option key={course.id} value={course.id}>
 												{course.name}
@@ -421,6 +453,8 @@ const TrainingPage = () => {
 										<label className="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
 										<input
 											type="date"
+											value={formData.date}
+											onChange={(e) => setFormData({ ...formData, date: e.target.value })}
 											className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										/>
 									</div>
@@ -428,6 +462,8 @@ const TrainingPage = () => {
 										<label className="block text-sm font-medium text-gray-700 mb-2">Preferred Time</label>
 										<input
 											type="time"
+											value={formData.time}
+											onChange={(e) => setFormData({ ...formData, time: e.target.value })}
 											className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										/>
 									</div>
@@ -436,6 +472,8 @@ const TrainingPage = () => {
 									<label className="block text-sm font-medium text-gray-700 mb-2">Other Notes</label>
 									<textarea
 										rows={4}
+										value={formData.notes}
+										onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
 										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										placeholder="Any additional notes or questions..."
 									/>

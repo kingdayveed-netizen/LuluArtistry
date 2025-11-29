@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart, Star, ShoppingCart, Trash2 } from "lucide-react";
 import { products } from "@/utils/portfolioData";
+import toast from "react-hot-toast";
 
 export default function WishlistPage() {
 	const [favorites, setFavorites] = useState<string[]>([]);
@@ -43,8 +44,8 @@ export default function WishlistPage() {
 			cartItems.push({ ...product, quantity: 1 });
 		}
 		
-		localStorage.setItem("cart", JSON.stringify(cartItems));
-		alert(`${product.name} added to cart!`);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+    toast.success(`${product.name} added to cart!`);
 	};
 
 	const renderStars = (rating: number) => {

@@ -3,7 +3,8 @@
 import { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, CreditCard, Calendar, Clock, MapPin, User } from "lucide-react";
+import { ArrowLeft, CreditCard, Calendar, Clock, MapPin, User, CheckCircle, Shield } from "lucide-react";
+import toast from "react-hot-toast";
 
 const PaymentPageContent = () => {
 	const searchParams = useSearchParams();
@@ -20,6 +21,7 @@ const PaymentPageContent = () => {
 		cardNumber: "",
 		expiryDate: "",
 		cvv: "",
+		cardholderName: "",
 		paymentMethod: "card"
 	});
 
@@ -42,18 +44,36 @@ const PaymentPageContent = () => {
 	}, [searchParams]);
 
 	const getServicePrice = (service: string) => {
+		// Map service IDs from book-session/page.tsx to prices
 		const prices: { [key: string]: number } = {
-			"classic-lashes": 120,
-			"hybrid-lashes": 140,
-			"volume-lashes": 160,
-			"lash-lift": 80,
-			"lash-tint": 60,
-			"lash-removal": 40,
-			"classic-lash-training": 300,
-			"volume-lash-training": 350,
-			"lash-lift-training": 250
+			"Ombré Powder Brows": 700000,
+			"Signature Combo Brows": 80000,
+			"Microshading": 70000,
+			"Brow Lamination & Tint": 40000,
+			"Brow Touch-up (All Types)": 60000,
+			"Classic Set": 20000,
+			"Hybrid Set": 25000,
+			"Volume Set": 1200000,
+			" MegaVolume Set": 40000,
+			" Bottom Lashes": 10000,
+			" Wispy Add-On": 8000,
+			" The Aleks Set": 50000,
+			" Dolly Set": 66000,
+			" Flirty Fox Eye": 40000,
+			" The Eb Luxe Set": 40000,
+			" Private Brow Training": 400000,
+			"Group Brow Training": 300000,
+			" Private Lash Training": 300000,
+			" Group Lash Training": 200000,
+			" Private Combo Lash + Brow Training": 650000,
+			" Group Combo Lash + Brow Training": 450000,
+			"Private Brow Lamination & Tint Training": 150000
 		};
-		return prices[service] || 120;
+		return prices[service] || 25000;
+	};
+
+	const formatPrice = (price: number) => {
+		return `₦${price.toLocaleString('en-NG')}`;
 	};
 
 	const price = getServicePrice(bookingData.service);
@@ -69,8 +89,8 @@ const PaymentPageContent = () => {
 	const handlePayNow = () => {
 		// Validate payment form
 		if (paymentData.paymentMethod === "card") {
-			if (!paymentData.cardNumber || !paymentData.expiryDate || !paymentData.cvv) {
-				alert("Please fill in all payment details");
+			if (!paymentData.cardNumber || !paymentData.expiryDate || !paymentData.cvv || !paymentData.cardholderName) {
+				toast.error("Please fill in all payment details");
 				return;
 			}
 		}
@@ -100,55 +120,44 @@ const PaymentPageContent = () => {
 						</Link>
 					</div>
 					<h1 className="text-3xl md:text-4xl font-bold text-dark-gray mb-2">
-						Book a Session - Lulu's Academy
+						Book a Session - Lulu's Artistry
 					</h1>
 					<p className="text-lg text-gray-600">
-						Payment Options.
+						Elevate your beauty. Book your luxury lash, brow, or training session with ease.
 					</p>
 				</div>
 			</div>
 
 			<div className="max-w-4xl mx-auto px-6 sm:px-8 py-12">
-				<div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 					{/* Payment Form */}
-					<div className="lg:col-span-2">
+					<div className="max-w-2xl mx-auto">
 						<div className="bg-white rounded-2xl shadow-lg p-8">
-							<h2 className="text-2xl font-bold text-dark-gray mb-6">Payment Options</h2>
+							<h2 className="text-2xl font-bold text-dark-gray mb-2">Payment Options</h2>
+							<p className="text-gray-600 mb-6">Choose how you'd like to pay for your appointment.</p>
 							
-							{/* Booking Summary */}
+							{/* Payment Summary */}
 							<div className="bg-gray-50 rounded-lg p-6 mb-8">
-								<h3 className="font-semibold text-lg mb-4">Booking Summary</h3>
-								<div className="space-y-2 text-sm">
+								<h3 className="font-semibold text-lg mb-4">Payment Summary</h3>
+								<div className="space-y-3">
 									<div className="flex justify-between">
-										<span className="text-gray-600">Service:</span>
-										<span className="font-medium">{bookingData.service}</span>
+										<span className="text-gray-600">Subtotal:</span>
+										<span className="font-medium">{formatPrice(price)}</span>
 									</div>
-									<div className="flex justify-between">
-										<span className="text-gray-600">Date & Time:</span>
-										<span className="font-medium">
-											{new Date(bookingData.date).toLocaleDateString('en-US', { 
-												weekday: 'short', 
-												month: 'short', 
-												day: 'numeric', 
-												year: 'numeric' 
-											})}, {bookingData.time}
-										</span>
-									</div>
-									<div className="flex justify-between">
-										<span className="text-gray-600">Location:</span>
-										<span className="font-medium">{bookingData.location}</span>
-									</div>
-									<div className="flex justify-between">
-										<span className="text-gray-600">Price:</span>
-										<span className="font-medium">${price.toFixed(2)}</span>
+									<div className="flex justify-between border-t border-gray-300 pt-3">
+										<span className="font-semibold">Total:</span>
+										<span className="font-bold text-lg text-primary-gold">{formatPrice(price)}</span>
 									</div>
 								</div>
 							</div>
 
 							{/* Payment Methods */}
 							<div className="space-y-6">
-								{/* Credit Card */}
-								<div className="border border-gray-200 rounded-lg p-6">
+								{/* Paystack/Flutterwave Card Payment */}
+								<div className={`border-2 rounded-lg p-6 transition-all ${
+									paymentData.paymentMethod === "card" 
+										? "border-primary-gold bg-yellow-50/30" 
+										: "border-gray-200"
+								}`}>
 									<div className="flex items-center gap-3 mb-4">
 										<input
 											type="radio"
@@ -157,14 +166,16 @@ const PaymentPageContent = () => {
 											value="card"
 											checked={paymentData.paymentMethod === "card"}
 											onChange={(e) => handlePaymentMethodChange(e.target.value)}
-											className="text-primary-gold focus:ring-primary-gold"
+											className="text-primary-gold focus:ring-primary-gold w-5 h-5"
 										/>
 										<CreditCard className="text-gray-600" size={20} />
-										<label htmlFor="card" className="font-semibold">Credit Card</label>
+										<label htmlFor="card" className="font-semibold text-gray-800">
+											Paystack/Flutterwave (Debit/Credit Card)
+										</label>
 									</div>
 									
 									{paymentData.paymentMethod === "card" && (
-										<div className="space-y-4">
+										<div className="space-y-4 mt-4">
 											<div>
 												<label className="block text-sm font-medium text-gray-700 mb-2">
 													Card Number
@@ -173,8 +184,9 @@ const PaymentPageContent = () => {
 													type="text"
 													value={paymentData.cardNumber}
 													onChange={(e) => handleInputChange("cardNumber", e.target.value)}
-													placeholder="1234 5678 9012 3456"
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-transparent"
+													placeholder="0000 0000 0000 0000"
+													maxLength={19}
+													className="w-full px-4 py-3 border-2 border-primary-gold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-transparent"
 												/>
 											</div>
 											<div className="grid grid-cols-2 gap-4">
@@ -187,7 +199,8 @@ const PaymentPageContent = () => {
 														value={paymentData.expiryDate}
 														onChange={(e) => handleInputChange("expiryDate", e.target.value)}
 														placeholder="MM/YY"
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-transparent"
+														maxLength={5}
+														className="w-full px-4 py-3 border-2 border-primary-gold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-transparent"
 													/>
 												</div>
 												<div>
@@ -198,113 +211,179 @@ const PaymentPageContent = () => {
 														type="text"
 														value={paymentData.cvv}
 														onChange={(e) => handleInputChange("cvv", e.target.value)}
-														placeholder="123"
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-transparent"
+														placeholder="000"
+														maxLength={4}
+														className="w-full px-4 py-3 border-2 border-primary-gold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-transparent"
 													/>
 												</div>
+											</div>
+											<div>
+												<label className="block text-sm font-medium text-gray-700 mb-2">
+													Cardholder Name
+												</label>
+												<input
+													type="text"
+													value={paymentData.cardholderName}
+													onChange={(e) => handleInputChange("cardholderName", e.target.value)}
+													placeholder="Enter name as it appears on card"
+													className="w-full px-4 py-3 border-2 border-primary-gold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-transparent"
+												/>
 											</div>
 										</div>
 									)}
 								</div>
 
-								{/* PayPal */}
-								<div className="border border-gray-200 rounded-lg p-6">
+								{/* Bank Transfer */}
+								<div className={`border-2 rounded-lg p-6 transition-all ${
+									paymentData.paymentMethod === "transfer" 
+										? "border-primary-gold bg-yellow-50/30" 
+										: "border-gray-200"
+								}`}>
 									<div className="flex items-center gap-3">
 										<input
 											type="radio"
-											id="paypal"
+											id="transfer"
 											name="paymentMethod"
-											value="paypal"
-											checked={paymentData.paymentMethod === "paypal"}
+											value="transfer"
+											checked={paymentData.paymentMethod === "transfer"}
 											onChange={(e) => handlePaymentMethodChange(e.target.value)}
-											className="text-primary-gold focus:ring-primary-gold"
+											className="text-primary-gold focus:ring-primary-gold w-5 h-5"
 										/>
 										<div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-											<span className="text-white font-bold text-sm">P</span>
+											<span className="text-white font-bold text-sm">₦</span>
 										</div>
-										<label htmlFor="paypal" className="font-semibold">PayPal</label>
-									</div>
-								</div>
-
-								{/* Apple Pay */}
-								<div className="border border-gray-200 rounded-lg p-6">
-									<div className="flex items-center gap-3">
-										<input
-											type="radio"
-											id="apple"
-											name="paymentMethod"
-											value="apple"
-											checked={paymentData.paymentMethod === "apple"}
-											onChange={(e) => handlePaymentMethodChange(e.target.value)}
-											className="text-primary-gold focus:ring-primary-gold"
-										/>
-										<div className="w-8 h-8 bg-black rounded flex items-center justify-center">
-											<span className="text-white font-bold text-sm">🍎</span>
-										</div>
-										<label htmlFor="apple" className="font-semibold">Apple Pay</label>
-									</div>
-								</div>
-
-								{/* Google Pay */}
-								<div className="border border-gray-200 rounded-lg p-6">
-									<div className="flex items-center gap-3">
-										<input
-											type="radio"
-											id="google"
-											name="paymentMethod"
-											value="google"
-											checked={paymentData.paymentMethod === "google"}
-											onChange={(e) => handlePaymentMethodChange(e.target.value)}
-											className="text-primary-gold focus:ring-primary-gold"
-										/>
-										<div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
-											<span className="text-white font-bold text-sm">G</span>
-										</div>
-										<label htmlFor="google" className="font-semibold">Google Pay</label>
+										<label htmlFor="transfer" className="font-semibold text-gray-800">
+											Bank Transfer
+										</label>
+										{paymentData.paymentMethod === "transfer" && (
+											<p className="text-sm text-gray-600 ml-11 mt-2">
+												Direct bank transfer
+											</p>
+										)}
 									</div>
 								</div>
 							</div>
 
-							{/* Total */}
-							<div className="border-t border-gray-200 pt-6 mt-8">
-								<div className="flex justify-between items-center text-xl font-bold">
-									<span>Total</span>
-									<span>${price.toFixed(2)}</span>
+							{/* Security Indicators */}
+							<div className="flex flex-wrap items-center gap-4 mt-6 pt-6 border-t border-gray-200">
+								<div className="flex items-center gap-2 text-sm text-gray-600">
+									<CheckCircle className="text-green-500" size={16} />
+									<span>SSL Secure</span>
+								</div>
+								<div className="flex items-center gap-2 text-sm text-gray-600">
+									<Shield className="text-green-500" size={16} />
+									<span>Verify by Paystack</span>
+								</div>
+								<div className="flex items-center gap-2 text-sm text-gray-600">
+									<Shield className="text-green-500" size={16} />
+									<span>Privacy Protected</span>
 								</div>
 							</div>
 
-							{/* Pay Now Button */}
-							<div className="mt-8">
+							{/* Navigation Buttons */}
+							<div className="flex gap-4 mt-8 pt-6 border-t border-gray-200">
+								<Link
+									href={`/book-session/appointment?service=${encodeURIComponent(bookingData.service)}`}
+									className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-4 px-6 rounded-lg transition-colors text-center"
+								>
+									← Back
+								</Link>
 								<button
 									onClick={handlePayNow}
-									className="w-full bg-primary-gold hover:bg-yellow-500 text-black font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
+									className="flex-1 bg-primary-gold hover:bg-yellow-500 text-black font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105"
 								>
-									Pay Now
+									Continue to Confirm
 								</button>
 							</div>
 						</div>
 					</div>
 
-					{/* About Lulu Sidebar */}
-					<div className="lg:col-span-1">
-						<div className="bg-gray-50 rounded-2xl p-6 sticky top-8">
-							<h3 className="text-xl font-bold text-dark-gray mb-4">
-								About Lulu - Beauty & Skills
-							</h3>
-							<div className="relative h-48 w-full overflow-hidden rounded-lg mb-4">
-								<Image
-									src="/api/placeholder/300/200"
-									alt="About Lulu"
-									fill
-									className="object-cover"
-								/>
+					{/* Important Notes & Policies Section */}
+					<div className="max-w-4xl mx-auto px-6 sm:px-8 mt-12">
+						<div className="bg-white rounded-2xl shadow-lg p-8">
+							<h2 className="text-2xl font-bold text-dark-gray mb-2">Important Notes & Policies</h2>
+							<p className="text-gray-600 mb-8">Please review our policies to ensure a smooth experience</p>
+							
+							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+								<div>
+									<h3 className="font-semibold text-lg text-dark-gray mb-2">Cancellation Policy</h3>
+									<p className="text-gray-600 text-sm">
+										Please cancel or reschedule at least 24 hours in advance to avoid cancellation fees.
+									</p>
+								</div>
+								<div>
+									<h3 className="font-semibold text-lg text-dark-gray mb-2">No-Show Policy</h3>
+									<p className="text-gray-600 text-sm">
+										No-shows may result in loss of deposit and may affect future booking privileges.
+									</p>
+								</div>
+								<div>
+									<h3 className="font-semibold text-lg text-dark-gray mb-2">Late Arrival Policy</h3>
+									<p className="text-gray-600 text-sm">
+										Late arrivals of 15+ minutes may result in reduced service time to accommodate other clients.
+									</p>
+								</div>
+								<div>
+									<h3 className="font-semibold text-lg text-dark-gray mb-2">Payment Terms</h3>
+									<p className="text-gray-600 text-sm">
+										Full payment or deposit required to secure your appointment. Refunds subject to cancellation policy.
+									</p>
+								</div>
+								<div>
+									<h3 className="font-semibold text-lg text-dark-gray mb-2">Health & Safety</h3>
+									<p className="text-gray-600 text-sm">
+										Please inform us of any allergies or medical conditions. We maintain strict hygiene standards.
+									</p>
+								</div>
+								<div>
+									<h3 className="font-semibold text-lg text-dark-gray mb-2">Contact Us</h3>
+									<p className="text-gray-600 text-sm">
+										Need to reschedule? Contact us at +234 XXX XXX XXXX or email info@lulusartistry.com
+									</p>
+								</div>
 							</div>
-							<p className="text-gray-600 text-sm leading-relaxed">
-								With over 5 years of experience in the beauty industry, Lulu has mastered the art of lash extensions and beauty enhancement. Her passion for perfection ensures you'll leave feeling confident and beautiful.
+						</div>
+					</div>
+
+					{/* Newsletter Signup Section */}
+					<div className="max-w-4xl mx-auto px-6 sm:px-8 mt-12">
+						<div className="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-2xl shadow-lg p-8">
+							<h2 className="text-2xl font-bold text-dark-gray mb-2">Glow in Your Inbox</h2>
+							<p className="text-gray-600 mb-6">
+								Be the first to hear about new arrivals, exclusive deals, and beauty tips made just for you.
+							</p>
+							
+							<form 
+								onSubmit={(e) => {
+									e.preventDefault();
+									const form = e.target as HTMLFormElement;
+									const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
+									if (emailInput?.value) {
+										toast.success("Thank you for subscribing!");
+										emailInput.value = "";
+									}
+								}}
+								className="flex flex-col sm:flex-row gap-4"
+							>
+								<input
+									type="email"
+									placeholder="Your Email address"
+									required
+									className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold focus:border-transparent"
+								/>
+								<button
+									type="submit"
+									className="bg-primary-gold hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-lg transition-colors whitespace-nowrap"
+								>
+									Subscribe & Stay Beautiful
+								</button>
+							</form>
+							
+							<p className="text-xs text-gray-500 mt-4">
+								By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
 							</p>
 						</div>
 					</div>
-				</div>
 			</div>
 		</div>
 	);

@@ -18,37 +18,36 @@ export default function ShippingPage() {
 						<h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Shipping Information</h2>
 						
 						<div className="mb-6">
-							<h3 className="text-lg font-semibold mb-3 text-gray-700">Shipping Times</h3>
+							<h3 className="text-lg font-semibold mb-3 text-gray-700">processing Time:</h3>
 							<p className="text-gray-600 mb-4">
-								We process and ship orders within 1-2 business days. Once your order is shipped, you will receive a tracking number via email.
+							  All orders are processed within 1–2 business days after payment is confirmed.
 							</p>
-							<ul className="list-disc list-inside text-gray-600 space-y-2 mb-4">
-								<li><strong>Local Delivery:</strong> 3-5 business days</li>
-								<li><strong>Express Shipping:</strong> 1-2 business days (additional fee applies)</li>
-								<li><strong>International Shipping:</strong> 7-14 business days</li>
-							</ul>
 						</div>
 
 						<div className="mb-6">
-							<h3 className="text-lg font-semibold mb-3 text-gray-700">Shipping Costs</h3>
+							<h3 className="text-lg font-semibold mb-3 text-gray-700">Within Nigeria:</h3>
 							<p className="text-gray-600 mb-4">
-								Shipping costs are calculated at checkout based on your location and selected shipping method.
+							 Delivery takes 2–5 business days via trusted couriers like GIG, DHL, or dispatch riders.
 							</p>
-							<ul className="list-disc list-inside text-gray-600 space-y-2 mb-4">
-								<li><strong>Free Shipping:</strong> Available on orders over ₦50,000</li>
-								<li><strong>Standard Shipping:</strong> ₦2,000 - ₦5,000 depending on location</li>
-								<li><strong>Express Shipping:</strong> ₦5,000 - ₦10,000 depending on location</li>
-								<li><strong>International Shipping:</strong> Calculated based on destination and weight</li>
-							</ul>
+						</div>
+						
+						<div className="mb-6">
+							<h3 className="text-lg font-semibold mb-3 text-gray-700">International Shipping:</h3>
+							<p className="text-gray-600 mb-4">
+							 We deliver to the UK, USA, Canada, South Africa, Zimbabwe, and more. <br /> Shipping time is typically 7–14 business days, depending on location.
+							</p>
 						</div>
 
 						<div className="mb-6">
-							<h3 className="text-lg font-semibold mb-3 text-gray-700">Order Tracking</h3>
+							<h3 className="text-lg font-semibold mb-3 text-gray-700">Order Tracking:</h3>
 							<p className="text-gray-600 mb-4">
-								Once your order ships, you'll receive an email with a tracking number. You can use this number to track your package on our website or the carrier's website.
+							   You'll receive a tracking number via email once your order is dispatched.
 							</p>
-							<p className="text-gray-600">
-								If you have any questions about your shipment, please contact us at <a href="mailto:info@lulustore.com" className="text-primary-gold hover:underline">info@lulustore.com</a> with your order number.
+						</div>
+						<div className="mb-6">
+							<h3 className="text-lg font-semibold mb-3 text-gray-700">Note for International Orders:</h3>
+							<p className="text-gray-600 mb-4">
+							Customs duties or import taxes are not included and must be paid by the buyer.
 							</p>
 						</div>
 					</section>
@@ -58,45 +57,24 @@ export default function ShippingPage() {
 						<h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Terms & Conditions</h2>
 						
 						<div className="mb-6">
-							<h3 className="text-lg font-semibold mb-3 text-gray-700">Ordering</h3>
 							<p className="text-gray-600 mb-4">
-								By placing an order on our website, you agree to provide accurate and complete information. We reserve the right to refuse or cancel any order at our discretion.
+								By using our website and placing an order with Lulu’s Artistry, you agree to the following:
 							</p>
 						</div>
 
 						<div className="mb-6">
-							<h3 className="text-lg font-semibold mb-3 text-gray-700">Website Usage</h3>
-							<p className="text-gray-600 mb-4">
-								This website is provided for your personal, non-commercial use. You may not reproduce, distribute, or transmit any content from this website without our prior written consent.
-							</p>
-						</div>
-
-						<div className="mb-6">
-							<h3 className="text-lg font-semibold mb-3 text-gray-700">Intellectual Property</h3>
-							<p className="text-gray-600 mb-4">
-								All content on this website, including text, graphics, logos, images, and software, is the property of Lulu Artistry and is protected by copyright and other intellectual property laws.
-							</p>
-						</div>
-
-						<div className="mb-6">
-							<h3 className="text-lg font-semibold mb-3 text-gray-700">Limitation of Liability</h3>
-							<p className="text-gray-600 mb-4">
-								Lulu Artistry shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of this website or purchase of our products.
-							</p>
-						</div>
-
-						<div className="mb-6">
-							<h3 className="text-lg font-semibold mb-3 text-gray-700">Changes to Terms</h3>
-							<p className="text-gray-600 mb-4">
-								We reserve the right to modify these terms and conditions at any time. Changes will be effective immediately upon posting to this website. Your continued use of the website constitutes acceptance of any changes.
-							</p>
+							<ul className="list-disc list-inside text-gray-600 mb-4 space-y-2">
+								<li>All content (images, text, etc.) is owned by Lulu’s Artistry.</li>
+								<li>You may not copy or reproduce any part of the site without our permission.</li>
+								<li>Service bookings and product orders are subject to our stated policies.</li>
+							</ul>
 						</div>
 					</section>
 
 					{/* Newsletter */}
 					<section className="mt-12 bg-[#fff9ef] p-8 rounded-lg">
 						<h2 className="text-2xl md:text-3xl font-bold mb-4 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
-							Glam In Your Inbox
+							Glow In Your Inbox
 						</h2>
 						<p className="text-gray-600 text-center mb-6">
 							Be the first to hear about new arrivals, exclusive deals, and beauty tips made just for you.

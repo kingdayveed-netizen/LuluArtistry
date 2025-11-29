@@ -25,7 +25,7 @@ const Footer = () => {
 					</p>
 					<div className='flex gap-4 mt-2'>
 						<a
-							href='https://wa.me/08088881234'
+							href='https://wa.me/+234 703 100 2094'
 							target='_blank'
 							rel='noopener noreferrer'
 							className='cursor-pointer hover:text-primary-gold transition-colors'
@@ -36,7 +36,7 @@ const Footer = () => {
 							</svg>
 						</a>
 						<a
-							href='https://www.instagram.com/luluartistry.ng'
+							href='https://www.instagram.com/lulusartistry.ng'
 							target='_blank'
 							rel='noopener noreferrer'
 							className='cursor-pointer hover:text-primary-gold transition-colors'
@@ -47,7 +47,7 @@ const Footer = () => {
 							</svg>
 						</a>
 						<a
-							href='https://www.facebook.com/luluartistry'
+							href='https://www.facebook.com/share/1H5cLZK4x8/?mibextid=wwXIfr'
 							target='_blank'
 							rel='noopener noreferrer'
 							className='cursor-pointer hover:text-primary-gold transition-colors'
@@ -58,7 +58,7 @@ const Footer = () => {
 							</svg>
 						</a>
 						<a
-							href='tel:08088881234'
+							href='tel:+234 703 100 2094'
 							className='cursor-pointer hover:text-primary-gold transition-colors'
 							aria-label='Phone'
 						>
@@ -124,13 +124,13 @@ const Footer = () => {
 					<p className='font-semibold mb-3'>Contact Information</p>
 					<div className='flex flex-col gap-2 text-sm'>
 						<p className='flex items-center gap-2'>
-							<MapPin size={16} /> 123 Beauty Street, Lagos, Nigeria
+							<MapPin size={16} /> 123 Beauty Street, Calabar, Nigeria
 						</p>
 						<p className='flex items-center gap-2'>
-							<Mail size={16} /> info@lulustore.com
+							<Mail size={16} /> info@lulusartistry.ng
 						</p>
 						<p className='flex items-center gap-2'>
-							<Phone size={16} /> +234 90000000
+							<Phone size={16} /> +234 703 100 2094
 						</p>
 						<p className='flex items-center gap-2'>
 							<Clock size={16} /> Mon - Fri: 9AM - 6PM

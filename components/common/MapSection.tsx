@@ -5,7 +5,7 @@ const MapSection = () => {
 	// 3. Select "Embed a map"
 	// 4. Copy the iframe src URL and replace the mapEmbedUrl below
 	// For now, using a basic embed - replace with your actual embed URL from Google Maps
-	const mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d127190.52409893827!2d8.25179715340147!3d4.988779739248927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUnogwu%20plaza%2C%20Marian%20road%2C%20opposite%20Trans-Calabar%20(TCC)%2C%20Cross%20River!5e0!3m2!1sen!2sng!4v1762098412021!5m2!1sen!2sng`;
+	const mapEmbedUrl = `https://www.google.com/maps?q=4.9750875,8.3406566&z=15&output=embed`;
 
 	return (
 		<div className='bg-white py-12'>

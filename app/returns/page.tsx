@@ -22,14 +22,14 @@ export default function ReturnsPage() {
 						If your item arrives damaged or incorrect, please contact us within 48 hours of delivery for a quick resolution.
 						</p>
 						<p className="text-gray-600 mb-4">contact us Anytime
-						 <br/><a href="mailto:info@lulustore.com" className="text-primary-gold hover:underline">info@lulustore.com</a> </p>
+						 <br/><a href="mailto:hello@luluartistry.com" className="text-primary-gold hover:underline">hello@luluartistry.com</a> </p>
 					</section>
 
 
 					{/* Newsletter */}
 					<section className="mt-12 bg-[#fff9ef] p-8 rounded-lg">
 						<h2 className="text-2xl md:text-3xl font-bold mb-4 text-center" style={{ fontFamily: "'Playfair Display', serif" }}>
-							Glam In Your Inbox
+							Glow In Your Inbox
 						</h2>
 						<p className="text-gray-600 text-center mb-6">
 							Be the first to hear about new arrivals, exclusive deals, and beauty tips made just for you.

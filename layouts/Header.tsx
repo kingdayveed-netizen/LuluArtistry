@@ -5,9 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Search as SearchIcon } from "lucide-react";
+import { Search as SearchIcon, Menu, X } from "lucide-react";
 
-const Header = () => {
+interface HeaderProps {
+	onToggleMenu?: () => void;
+	isMenuOpen?: boolean;
+}
+
+const Header = ({ onToggleMenu, isMenuOpen }: HeaderProps) => {
 	const router = useRouter();
 	const [searchQuery, setSearchQuery] = useState("");
 	const [showMobileSearch, setShowMobileSearch] = useState(false);
@@ -85,7 +90,7 @@ const Header = () => {
 	};
 
 	return (
-		<div className='relative flex items-center justify-between p-4 border-b border-gray-300 md:px-10'>
+		<div className='relative flex items-center justify-between p-4 border-b border-gray-300 md:px-10 bg-white'>
 			{/* Logo */}
 			<Image
 				src={logo}
@@ -116,6 +121,16 @@ const Header = () => {
 
 			{/* Icons */}
 			<div className='flex items-center gap-3 sm:gap-4'>
+				{/* Mobile Menu Toggle */}
+				{onToggleMenu && (
+					<button
+						onClick={onToggleMenu}
+						className='sm:hidden p-2 rounded-full border border-gray-200'
+						aria-label='Toggle menu'
+					>
+						{isMenuOpen ? <X className='w-5 h-5' /> : <Menu className='w-5 h-5' />}
+					</button>
+				)}
 				{/* Mobile Search Icon */}
 				<button
 					onClick={() => setShowMobileSearch(!showMobileSearch)}
