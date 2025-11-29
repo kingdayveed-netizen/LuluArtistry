@@ -51,11 +51,11 @@ const Newarrival = () => {
     { id: 8, name: "One Battery Tattoo Machine Cover", price: 500, image: oneBtmCover, rating: 4.2 },
     { id: 9, name: "Ib Primer", price: 10000, image: primer, rating: 4.2 },
     { id: 10, name: "Brow Sealant", price: 10000, image: browsalant, rating: 4.2 },
-    { id: 11, name: "Dummy Head", price: 6000, image: dummyhead, rating: 4.2 },
+    { id: 11, name: "Dummy Head", price: 6500, image: dummyhead, rating: 4.2 },
     { id: 12, name: "Double ARM LIGHT", price: 65000, image: doublearm, rating: 4.2 },
     { id: 13, name: "Eye Patch", price: 5000, image: eyepatch, rating: 4.2 },
-    { id: 14, name: "Lash Bed Blanket", price: 22000, image: lashblanket, rating: 4.2 },
-    { id: 15, name: "Brow Mapping Pen", price: 4000, image: browmapping, rating: 4.2 },
+    { id: 14, name: "Lash Bed Blanket", price: 25000, image: lashblanket, rating: 4.2 },
+    { id: 15, name: "Brow Mapping Pen", price: 4500, image: browmapping, rating: 4.2 },
     { id: 16, name: "Lash Wash Brush", price: 2000, image: lashwash, rating: 4.2 },
   ];
 

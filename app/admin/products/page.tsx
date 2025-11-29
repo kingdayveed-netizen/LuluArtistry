@@ -28,7 +28,7 @@ const initialProducts: Product[] = [
 		id: "1",
 		name: "Lash Bed Blankets",
 		category: "Lashes",
-		price: 22000,
+		price: 25000,
 		stock: 45,
 		image: lashbedcover.src,
 		rating: 4
@@ -55,7 +55,7 @@ const initialProducts: Product[] = [
 		id: "4",
 		name: "Brow Sealant",
 		category: "Brows",
-		price: 12000,
+		price: 10000,
 		stock: 17,
 		image: browsealant.src,
 		rating: 5
@@ -91,7 +91,7 @@ const initialProducts: Product[] = [
 		id: "8",
 		name: "Brow Mapping Pen",
 		category: "Brows",
-		price: 5000,
+		price: 4500,
 		stock: 60,
 		image: browmappingpen.src,
 		rating: 5

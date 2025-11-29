@@ -37,8 +37,8 @@ const page = () => {
     { id: 3, name: "Lash Bed", price: 230000, image: lashbed, rating: 4.5 },
     { id: 4, name: "Disposable Bed Cover", price: 24000, image: Dbed, rating: 4.8 },
     { id: 5, name: "Eye Patches", price: 5000, image: eyePatches, rating: 4.3 },
-    { id: 6, name: "Lash Bed Blanket", price: 22000, image: lashblanket, rating: 4.7 },
-    { id: 7, name: "Brow Mapping Pen", price: 4000, image: browmapping, rating: 4.6 },
+    { id: 6, name: "Lash Bed Blanket", price: 25000, image: lashblanket, rating: 4.7 },
+    { id: 7, name: "Brow Mapping Pen", price: 4500, image: browmapping, rating: 4.6 },
     { id: 8, name: "Lash Wash Brush", price: 2000, image: lashwash, rating: 4.9 },
   ];
 
